@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useMatch } from 'react-router-dom';
 
 // Importing different page components for student routes
 import Home from './pages/student/Home';
@@ -15,11 +15,16 @@ import Dashboard from './pages/educator/Dashboard';
 import AddCourse from './pages/educator/AddCourse';
 import MyCourses from './pages/educator/MyCourses';
 import StudentsEnrolled from './pages/educator/StudentsEnrolled';
+import Navbar from './component/student/Navbar';
 
 // Main App Component
 const App = () => {
+  const isEducatorRoute = useMatch("/educator/*");
+
   return (
-    <div>
+    <div className='text-default min-h-screen bg-white'>
+      {!isEducatorRoute && <Navbar/>}
+      
       {/* Define all routes for the application */}
       <Routes>
         {/* Default home page route */}
