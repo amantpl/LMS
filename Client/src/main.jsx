@@ -16,7 +16,7 @@ if (!PUBLISHABLE_KEY) {
 createRoot(document.getElementById('root')).render(
   // BrowserRouter provides routing functionality for the entire application
   <BrowserRouter>
-    <ClerkProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
       {/* AppContextProvider makes global state available throughout the app */}
       <AppContextProvider>
         {/* The main App component that contains all routes and UI */}
