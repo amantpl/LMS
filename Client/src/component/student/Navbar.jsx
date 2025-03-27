@@ -1,9 +1,12 @@
-import React from 'react'; // Import React library
+import React, { useContext } from 'react'; // Import React library
 import { assets } from '../../assets/assets'; // Importing assets (e.g., logo)
 import { Link } from 'react-router-dom'; // Importing Link component for navigation
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react'; // Importing authentication-related hooks and components from Clerk
+import { AppContext } from '../../context/AppContext';
 
 const Navbar = () => {
+
+  const {navigate,isEducator} = useContext(AppContext);
   // Check if the current page is the course list page
   const isCourseListPage = location.pathname.includes("/course-list");
 
@@ -17,7 +20,7 @@ const Navbar = () => {
       ${isCourseListPage ? 'bg-white' : 'bg-cyan-100/70'}`}> 
       
       {/* Logo Image */}
-      <img src={assets.logo} alt="Logo" className='w-28 lg:w-32 cursor-pointer' />
+      <img onClick={()=>navigate('/')} src={assets.logo} alt="Logo" className='w-28 lg:w-32 cursor-pointer' />
 
       {/* Navigation buttons (hidden on small screens, visible on medium & larger screens) */}
       <div className='hidden md:flex items-center gap-5 text-gray-500'>
@@ -25,7 +28,7 @@ const Navbar = () => {
             {/* Buttons visible only if the user is logged in */}
             {user && <> 
               {/* Button to become an educator (could be linked to an educator registration page) */}
-              <button>Become Educator</button>
+              <button onClick={()=>{navigate('/educator')}}>{isEducator ? 'Educator Dashboard' : 'Become Educator'}</button>
               {/* Link to user's enrolled courses */}
               | <Link to="/my-enrollments">My Enrollments</Link>
             </>}
@@ -43,7 +46,7 @@ const Navbar = () => {
           {/* Buttons visible only if the user is logged in */}
           {user && <> 
             {/* Button to become an educator */}
-            <button>Become Educator</button>
+            <button onClick={()=>{navigate('/educator')}}>{isEducator ? 'Educator Dashboard' : 'Become Educator'}</button>
             {/* Link to user's enrolled courses */}
             | <Link to="/my-enrollments">My Enrollments</Link>
           </>}
