@@ -16,6 +16,7 @@ import AddCourse from './pages/educator/AddCourse';
 import MyCourses from './pages/educator/MyCourses';
 import StudentsEnrolled from './pages/educator/StudentsEnrolled';
 import Navbar from './component/student/Navbar';
+import "quill/dist/quill.snow.css";
 
 // Main App Component
 const App = () => {
@@ -51,7 +52,7 @@ const App = () => {
         {/* Nested routes for educator-related pages */}
         <Route path='/educator' element={<Educator />}>
           {/* Default dashboard route for educators */}
-          <Route path='educator' element={<Dashboard />} />
+          <Route path='/educator' element={<Dashboard />} />
 
           {/* Route for adding a new course */}
           <Route path='add-course' element={<AddCourse />} />
@@ -60,7 +61,7 @@ const App = () => {
           <Route path='my-courses' element={<MyCourses />} />
 
           {/* Route for viewing students enrolled in the educator's courses */}
-          <Route path='student-enrolled' element={<StudentsEnrolled />} />
+          <Route path='students-enrolled' element={<StudentsEnrolled />} />
         </Route>
       </Routes>
     </div>
